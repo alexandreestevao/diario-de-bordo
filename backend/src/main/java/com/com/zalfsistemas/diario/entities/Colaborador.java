@@ -1,29 +1,43 @@
 package com.com.zalfsistemas.diario.entities;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "colaborador")
-public class Colaborador {
-	
+public class Colaborador implements Serializable{
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String cpf;
 	private String nome;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "cpf")
+	private List<Marcacao> colaboradores = new ArrayList<>();
+	
 	public Colaborador() {
 		
 	}
 
-	public Colaborador(String cpf, String nome) {
+	public Colaborador(String cpf, String nome, List<Marcacao> colaboradores) {
 		super();
 		this.cpf = cpf;
 		this.nome = nome;
+		this.colaboradores = colaboradores;
 	}
+
 
 	public String getCpf() {
 		return cpf;
@@ -39,6 +53,10 @@ public class Colaborador {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public List<Marcacao> getColaboradores() {
+		return colaboradores;
 	}
 
 	@Override
@@ -65,7 +83,8 @@ public class Colaborador {
 			return false;
 		return true;
 	}
-	
+
+
 	
 
 }
