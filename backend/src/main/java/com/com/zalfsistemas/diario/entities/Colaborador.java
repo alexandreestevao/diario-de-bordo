@@ -23,19 +23,19 @@ public class Colaborador implements Serializable{
 	private String cpf;
 	private String nome;
 	
-	@JsonIgnore
+	
 	@OneToMany(mappedBy = "cpf")
-	private List<Marcacao> colaboradores = new ArrayList<>();
+	private List<Marcacao> marcacoes = new ArrayList<>();
 	
 	public Colaborador() {
 		
 	}
 
-	public Colaborador(String cpf, String nome, List<Marcacao> colaboradores) {
+	public Colaborador(String cpf, String nome, List<Marcacao> marcacoes) {
 		super();
 		this.cpf = cpf;
 		this.nome = nome;
-		this.colaboradores = colaboradores;
+		this.marcacoes = marcacoes;
 	}
 
 
@@ -55,8 +55,8 @@ public class Colaborador implements Serializable{
 		this.nome = nome;
 	}
 
-	public List<Marcacao> getColaboradores() {
-		return colaboradores;
+	public List<Marcacao> getMarcacoes() {
+		return marcacoes;
 	}
 
 	@Override

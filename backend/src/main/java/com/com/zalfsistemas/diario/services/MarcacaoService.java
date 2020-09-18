@@ -1,6 +1,7 @@
 package com.com.zalfsistemas.diario.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,5 +18,10 @@ public class MarcacaoService {
 	public List<Marcacao> findAll() {
 		return repository.findAll();
 	}
+	
+	public Marcacao findByCpf(String cpf) {
+	    Optional<Marcacao> obj = repository.findByCpf(cpf); 
+	    return obj.get();
+	}	
 
 }

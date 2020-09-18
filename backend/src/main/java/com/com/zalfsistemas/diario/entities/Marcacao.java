@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "marcacao")
@@ -23,6 +24,7 @@ public class Marcacao implements Serializable{
 	private Long codigo;
 	private Integer cod_tipo_marcacao;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "cpf_colaborador")
 	private Colaborador cpf;
